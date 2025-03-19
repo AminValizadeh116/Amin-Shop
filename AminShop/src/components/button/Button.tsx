@@ -24,7 +24,6 @@ type TButton = ComponentPropsWithRef<"button"> & {
 };
 
 function Button({ children, variant, size, ...rest }: TButton) {
-  console.log(checkVariant(variant));
   
   return (
     <button className={`${checkVariant(variant)} ${checkSize(size as '2')}`} {...rest}>{children}</button>

@@ -1,84 +1,34 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../../components/container/Container";
-import { Link } from 'react-router'
+import { Link } from "react-router";
+import { getProducts } from "../../services/api";
+import { IProducts } from "../../types/services";
 
 function Store() {
+  const [productsList, setProductList] = useState<IProducts[]>([]);
+
+  useEffect(() => {
+    getProducts().then((result) => setProductList(result));
+  }, []);
+
+  console.log(productsList);
+
   return (
     <Container>
       <div className="grid grid-cols-12 gap-5 ">
-        <Link to='/store/1' className="col-span-3 rounded shadow cursor-pointer">
-          <img
-            src="https://px-web-images2.pixpa.com/xCpAipCkpmtuA2hJX7FBAAEDfsfqcHwxhJZ6znRKLvQ/rs:fit:1200:0/q:80/aHR0cHM6Ly9waXhwYWNvbS1pbWcucGl4cGEuY29tL2NvbS9hcnRpY2xlcy8xNTE1MTM1NjcyLXNodXR0ZXJzdG9ja18yODQ1ODE2NDkuanBn"
-            alt=""
-          />
-          <div className="flex justify-between pb-2 px-7 font-bold">
-            <span>title</span>
-            <span>price</span>
-          </div>
-          <div className="pb-4 px-5">
-            <p className="line-clamp-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere
-              ea, architecto quisquam quae dolorem inventore aliquam, veritatis
-              natus quibusdam amet reprehenderit adipisci quod eius! Consectetur
-              modi officiis id amet porro?
-            </p>
-          </div>
-        </Link>
+        {productsList.map((item) => (
+          <Link to={`/store/${item.id}`} className="col-span-3 rounded shadow cursor-pointer">
+            <img className="h-80" src={item.image} alt="" />
+            <div className="flex justify-between pb-2 px-7 font-bold">
+              <span className="w-40 line-clamp-1">{item.title}</span>
+              <span>{item.price} $</span>
+            </div>
+            <div className="pb-4 px-5">
+              <p className="line-clamp-2">{item.description}</p>
+            </div>
+          </Link>
 
-        <Link to='/store/2' className="col-span-3 rounded shadow cursor-pointer">
-          <img
-            src="https://px-web-images2.pixpa.com/xCpAipCkpmtuA2hJX7FBAAEDfsfqcHwxhJZ6znRKLvQ/rs:fit:1200:0/q:80/aHR0cHM6Ly9waXhwYWNvbS1pbWcucGl4cGEuY29tL2NvbS9hcnRpY2xlcy8xNTE1MTM1NjcyLXNodXR0ZXJzdG9ja18yODQ1ODE2NDkuanBn"
-            alt=""
-          />
-          <div className="flex justify-between pb-2 px-7 font-bold">
-            <span>title</span>
-            <span>price</span>
-          </div>
-          <div className="pb-4 px-5">
-            <p className="line-clamp-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere
-              ea, architecto quisquam quae dolorem inventore aliquam, veritatis
-              natus quibusdam amet reprehenderit adipisci quod eius! Consectetur
-              modi officiis id amet porro?
-            </p>
-          </div>
-        </Link>
-        <Link to='/store/3' className="col-span-3 rounded shadow cursor-pointer">
-          <img
-            src="https://px-web-images2.pixpa.com/xCpAipCkpmtuA2hJX7FBAAEDfsfqcHwxhJZ6znRKLvQ/rs:fit:1200:0/q:80/aHR0cHM6Ly9waXhwYWNvbS1pbWcucGl4cGEuY29tL2NvbS9hcnRpY2xlcy8xNTE1MTM1NjcyLXNodXR0ZXJzdG9ja18yODQ1ODE2NDkuanBn"
-            alt=""
-          />
-          <div className="flex justify-between pb-2 px-7 font-bold">
-            <span>title</span>
-            <span>price</span>
-          </div>
-          <div className="pb-4 px-5">
-            <p className="line-clamp-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere
-              ea, architecto quisquam quae dolorem inventore aliquam, veritatis
-              natus quibusdam amet reprehenderit adipisci quod eius! Consectetur
-              modi officiis id amet porro?
-            </p>
-          </div>
-        </Link>
-        <Link to='/store/4' className="col-span-3 rounded shadow cursor-pointer">
-          <img
-            src="https://px-web-images2.pixpa.com/xCpAipCkpmtuA2hJX7FBAAEDfsfqcHwxhJZ6znRKLvQ/rs:fit:1200:0/q:80/aHR0cHM6Ly9waXhwYWNvbS1pbWcucGl4cGEuY29tL2NvbS9hcnRpY2xlcy8xNTE1MTM1NjcyLXNodXR0ZXJzdG9ja18yODQ1ODE2NDkuanBn"
-            alt=""
-          />
-          <div className="flex justify-between pb-2 px-7 font-bold">
-            <span>title</span>
-            <span>price</span>
-          </div>
-          <div className="pb-4 px-5">
-            <p className="line-clamp-2">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facere
-              ea, architecto quisquam quae dolorem inventore aliquam, veritatis
-              natus quibusdam amet reprehenderit adipisci quod eius! Consectetur
-              modi officiis id amet porro?
-            </p>
-          </div>
-        </Link>
+        ))}
       </div>
     </Container>
   );
