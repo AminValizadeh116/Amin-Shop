@@ -13,11 +13,11 @@ function App() {
       <ShopingCartProvider>
         <Header />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/shop" element={<Shop />} />
-          <Route path="/store" element={<Store />} />
-          <Route path="/store/:id" element={<ProductPage />} />
-          <Route path="/shopping-cart" element={<ShoppingCart />} />
+          <Route path="/Amin-Shop" element={<Home />} />
+          <Route path="/Amin-Shop/shop" element={<Shop />} />
+          <Route path="/Amin-Shop/store" element={<Store />} />
+          <Route path="/Amin-Shop/store/:id" element={<ProductPage />} />
+          <Route path="/Amin-Shop/shopping-cart" element={<ShoppingCart />} />
         </Routes>
       </ShopingCartProvider>
     </>
