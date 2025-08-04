@@ -1,6 +1,6 @@
 {
   "name": "amin",
-  "homepage": "http://AminValizadeh116.github.io/Amin-Shop/",
+  "homepage": "https://aminvalizadeh116.github.io/Amin-Shop/",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,8 +9,8 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run dev"
-    
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.14",
